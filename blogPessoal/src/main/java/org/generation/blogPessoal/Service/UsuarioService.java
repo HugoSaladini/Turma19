@@ -1,16 +1,15 @@
-package org.generation.blogPessoal.Service;
+package org.generation.blogPessoal.service;
 
 import java.nio.charset.Charset;
 import java.util.Optional;
 
 import org.apache.commons.codec.binary.Base64;
+import org.generation.blogPessoal.model.UserLogin;
+import org.generation.blogPessoal.model.Usuario;
+import org.generation.blogPessoal.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import org.generation.blogPessoal.model.Usuario;
-import org.generation.blogPessoal.model.UsuarioLogin;
-import org.generation.blogPessoal.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
@@ -32,7 +31,7 @@ public class UsuarioService {
 		return Optional.of(repository.save(usuario));
 	}
 
-	public Optional<UsuarioLogin> Logar(Optional<UsuarioLogin> user) {
+	public Optional<UserLogin> Logar(Optional<UserLogin> user) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		Optional<Usuario> usuario = repository.findByUsuario(user.get().getUsuario());
